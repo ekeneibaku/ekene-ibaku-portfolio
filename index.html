@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EKENE IBAKU | Executive & Administrative Professional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --bg2: #111114;
+      --bg3: #18181d;
+      --gold: #c8a96e;
+      --gold-light: #e2c98a;
+      --gold-dim: rgba(200,169,110,0.15);
+      --text: #e8e4dc;
+      --text-muted: #8a8678;
+      --text-soft: #c4bfb5;
+      --border: rgba(200,169,110,0.2);
+      --border-soft: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(10,10,11,0.95), transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 3rem 5rem;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,169,110,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,169,110,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-tag {
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .hero-name .italic { font-style: italic; }
+    .hero-title {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      line-height: 1.9;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+    .hero-title .divider { color: var(--gold); margin: 0 0.4em; opacity: 0.6; }
+    .hero-summary {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 620px;
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      padding: 0.85rem 2rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: all 0.3s;
+      opacity: 0;
+      animation: fadeUp 0.8s 1s forwards;
+    }
+    .hero-cta:hover { background: var(--gold-dim); letter-spacing: 0.18em; }
+    .hero-cta::after { content: '→'; }
+    .hero-meta {
+      position: absolute; bottom: 3rem; right: 3rem;
+      text-align: right;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.2s forwards;
+    }
+    .hero-meta p { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.05em; }
+    .hero-meta a { color: var(--gold); text-decoration: none; font-size: 0.78rem; }
+
+    /* ── SECTION BASE ── */
+    section { position: relative; z-index: 1; }
+    .section-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem; }
+    .section-label {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .section-label span {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--text-soft);
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.9;
+    }
+    .about-text strong { color: var(--text); font-weight: 600; }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .stat-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border-soft);
+      background: var(--bg3);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 2px; height: 100%;
+      background: var(--gold);
+      transform: scaleY(0);
+      transition: transform 0.3s;
+      transform-origin: bottom;
+    }
+    .stat-card:hover { border-color: var(--border); }
+    .stat-card:hover::before { transform: scaleY(1); }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      font-weight: 300;
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.08em; margin-top: 0.3rem; }
+
+    /* ── COMPETENCIES ── */
+    .competencies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+    .comp-item {
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border-soft);
+      background: var(--bg2);
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      position: relative;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .comp-item.featured {
+      border-color: rgba(200,169,110,0.3);
+      background: rgba(200,169,110,0.05);
+      color: var(--text);
+      font-weight: 500;
+    }
+    .comp-item::before {
+      content: '';
+      position: absolute; left: 0; top: 50%;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.4s;
+      transform: translateY(-50%);
+    }
+    .comp-item:hover { padding-left: 2rem; color: var(--text); border-color: var(--border); }
+    .comp-item:hover::before { width: 1.2rem; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg2); }
+    .skills-categories { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .skill-category {
+      padding: 1.8rem;
+      border: 1px solid var(--border-soft);
+      background: var(--bg3);
+      transition: border-color 0.3s;
+    }
+    .skill-category:hover { border-color: var(--border); }
+    .skill-cat-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      padding: 0.3rem 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-soft);
+      border-radius: 2px;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience {}
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0.5rem; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+    .exp-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .exp-item.visible { opacity: 1; transform: none; }
+    .exp-dot {
+      position: absolute; left: -2.35rem; top: 0.4rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      background: var(--bg);
+    }
+    .exp-dot::after {
+      content: '';
+      position: absolute; inset: 2px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .exp-item:hover .exp-dot::after { opacity: 1; }
+    .exp-header { margin-bottom: 0.8rem; }
+    .exp-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.2rem;
+      color: var(--text);
+    }
+    .exp-org { color: var(--gold); font-size: 0.88rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .exp-meta { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.05em; }
+    .exp-bullets { list-style: none; margin-top: 1rem; }
+    .exp-bullets li {
+      font-size: 0.93rem;
+      color: var(--text-soft);
+      padding: 0.45rem 0 0.45rem 1.2rem;
+      position: relative;
+      border-bottom: 1px solid var(--border-soft);
+      line-height: 1.75;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--gold);
+      font-size: 0.7rem;
+      top: 0.6rem;
+    }
+    .exp-bullets strong { color: var(--gold); font-weight: 600; }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--bg2); }
+    .edu-card {
+      padding: 2rem;
+      border: 1px solid var(--border-soft);
+      background: var(--bg3);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      transition: border-color 0.3s;
+    }
+    .edu-card:hover { border-color: var(--border); }
+    .edu-icon {
+      width: 48px; height: 48px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .edu-degree {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.2rem;
+      color: var(--text);
+    }
+    .edu-inst { color: var(--gold); font-size: 0.88rem; margin-bottom: 0.2rem; }
+    .edu-detail { font-size: 0.8rem; color: var(--text-muted); }
+    .edu-courses { margin-top: 0.7rem; font-size: 0.83rem; color: var(--text-soft); }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+    .cert-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border-soft);
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .cert-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+    .cert-card:hover { border-color: var(--border); }
+    .cert-card:hover::after { transform: scaleX(1); }
+    .cert-type {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+    .cert-name { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-bottom: 0.3rem; line-height: 1.4; }
+    .cert-org { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ── WHY ME ── */
+    #whyme { background: var(--bg2); }
+    .whyme-content {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .whyme-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .whyme-intro em { color: var(--gold); font-style: italic; }
+    .whyme-points { list-style: none; }
+    .whyme-points li {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      font-size: 0.93rem;
+      color: var(--text-soft);
+      line-height: 1.75;
+    }
+    .whyme-points li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 0.6rem;
+      flex-shrink: 0;
+      margin-top: 0.45rem;
+    }
+    .whyme-points strong { color: var(--text); font-weight: 600; }
+    .whyme-points .metric { color: var(--gold); font-weight: 600; }
+
+    /* ── ADDITIONAL INFO ── */
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
+    .info-item {
+      padding: 1.5rem;
+      border: 1px solid var(--border-soft);
+      background: var(--bg2);
+      transition: border-color 0.3s;
+    }
+    .info-item:hover { border-color: var(--border); }
+    .info-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .info-value { font-size: 0.92rem; color: var(--text-soft); line-height: 1.7; }
+    .info-value strong { color: var(--text); font-weight: 500; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg2); }
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+    .contact-intro em { color: var(--gold); }
+    .contact-note { font-size: 0.92rem; color: var(--text-soft); line-height: 1.9; }
+    .contact-note strong { color: var(--text); font-weight: 500; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid var(--border-soft);
+      background: var(--bg3);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s;
+      font-size: 0.92rem;
+    }
+    .contact-link:hover { border-color: var(--border); color: var(--gold); padding-left: 2rem; }
+    .contact-link-icon { font-size: 1rem; color: var(--gold); width: 20px; text-align: center; flex-shrink: 0; }
+    .contact-link-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p { font-size: 0.78rem; color: var(--text-muted); }
+    footer span { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding: 7rem 1.5rem 4rem; }
+      .hero-meta { display: none; }
+      .section-inner { padding: 3.5rem 1.5rem; }
+      .about-grid, .whyme-content, .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">E. IBAKU</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#whyme">Why Me</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Executive &amp; Administrative Professional</div>
+      <h1 class="hero-name">EKENE <span class="italic">IBAKU</span></h1>
+      <p class="hero-title">
+        REMOTE GLOBAL EXECUTIVE SUPPORT
+        <span class="divider">·</span>
+        6 YEARS IN HIGH-LEVEL GENERAL ADMINISTRATIVE SUPPORT, OFFICE, OPERATIONS &amp; PROCESS OPTIMIZATION
+      </p>
+      <p class="hero-summary">
+        Detail-driven support and operations professional with a proven record of optimizing executive and administrative operations, streamlining workflows, and handling sensitive matters with <strong style="color:var(--text);font-weight:500">absolute discretion</strong> — consistently delivering results that enable leaders and teams to focus on what matters most.
+      </p>
+      <a href="#contact" class="hero-cta">Get in Touch</a>
+    </div>
+    <div class="hero-meta">
+      <p>Abuja, Nigeria (WAT)</p>
+      <p>Open to <span style="color:var(--gold)">Global Remote Roles</span></p>
+      <a href="mailto:keneibaku@gmail.com">keneibaku@gmail.com</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-label"><span>About Me</span></div>
+      <div class="about-grid reveal">
+        <div class="about-text">
+          <h2 class="section-heading">Precision, <em style="font-family:'Cormorant Garamond',serif;color:var(--gold);font-style:italic;">discretion,</em><br>and follow-through.</h2>
+          <p style="margin-top:1.5rem">
+            I am a results-oriented executive and administrative support professional with <strong>six years of experience</strong> providing high-level executive, administrative, and secretarial support to senior leadership and teams within structured, high-stakes environments, where <strong>team collaboration, proper execution of responsibilities, clear communication, confidentiality, meticulousness, and professionalism</strong> are paramount for organizational progress and process optimization.
+          </p>
+          <p>
+            I bring strong digital proficiency across modern project management platforms, collaboration tools, and AI-powered productivity solutions, enabling me to operate efficiently in fully remote settings without compromising quality or responsiveness.
+          </p>
+          <p>
+            Trusted for accuracy, reliability, and the ability to manage confidential information with care, I am ready to provide <strong>close assistance to leaders and teams</strong> on what matters most by taking seamless ownership of operations and delivering results behind the scenes.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-num">6+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Institutions Supported</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">80%</div>
+            <div class="stat-label">Reduced Document Retrieval Time</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">50%</div>
+            <div class="stat-label">Productivity Increase</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE COMPETENCIES -->
+  <section id="competencies">
+    <div class="section-inner">
+      <div class="section-label"><span>Core Competencies</span></div>
+      <h2 class="section-heading reveal">What I bring to every role.</h2>
+      <div class="competencies-grid reveal" style="margin-top:2rem">
+        <div class="comp-item featured">General Administrative Support</div>
+        <div class="comp-item featured">Executive Support</div>
+        <div class="comp-item featured">Remote Work Preparedness</div>
+        <div class="comp-item">Office Operations &amp; Coordination</div>
+        <div class="comp-item">Calendar &amp; Scheduling Management</div>
+        <div class="comp-item">Task &amp; Project Tracking</div>
+        <div class="comp-item">Data Entry &amp; Analytical Skills</div>
+        <div class="comp-item">Process Optimization</div>
+        <div class="comp-item">Email Management</div>
+        <div class="comp-item">Stakeholder &amp; Cross-Team Communication</div>
+        <div class="comp-item">Minute-Taking</div>
+        <div class="comp-item">Time &amp; Priority Management</div>
+        <div class="comp-item">Digital Files Organization &amp; Archiving</div>
+        <div class="comp-item">Budget Support</div>
+        <div class="comp-item">Document Review &amp; Report Preparation</div>
+        <div class="comp-item">Confidential Information Handling</div>
+        <div class="comp-item">Audit Preparation</div>
+        <div class="comp-item">Multitasking &amp; Organizational Agility</div>
+        <div class="comp-item">Travel &amp; Logistics Support</div>
+        <div class="comp-item">Virtual Support</div>
+        <div class="comp-item">Personal Support</div>
+        <div class="comp-item">Clerical &amp; Secretarial Support</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <div class="section-label"><span>Digital &amp; Technical Skills</span></div>
+      <h2 class="section-heading reveal">Tools I work with.</h2>
+      <div class="skills-categories reveal" style="margin-top:2rem">
+        <div class="skill-category">
+          <div class="skill-cat-title">Project Management</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Asana</span>
+            <span class="skill-tag">Trello</span>
+            <span class="skill-tag">Notion</span>
+            <span class="skill-tag">ClickUp</span>
+            <span class="skill-tag">Bitrix24</span>
+            <span class="skill-tag">Motion</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Office Productivity</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Microsoft Office Suite</span>
+            <span class="skill-tag">Google Workspace</span>
+            <span class="skill-tag">WPS Office</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Communication Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Slack</span>
+            <span class="skill-tag">WhatsApp</span>
+            <span class="skill-tag">Zoom</span>
+            <span class="skill-tag">Webex</span>
+            <span class="skill-tag">Microsoft Teams</span>
+            <span class="skill-tag">Loom</span>
+            <span class="skill-tag">Google Meet</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Design &amp; Presentation</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Canva</span>
+            <span class="skill-tag">CapCut</span>
+            <span class="skill-tag">Adobe Creative Suite</span>
+            <span class="skill-tag">PowerPoint</span>
+            <span class="skill-tag">CorelDRAW</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Systems &amp; Cloud Storage</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Google Drive</span>
+            <span class="skill-tag">Dropbox</span>
+            <span class="skill-tag">OneDrive</span>
+            <span class="skill-tag">iCloud</span>
+            <span class="skill-tag">Windows OS</span>
+            <span class="skill-tag">macOS</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">AI Productivity Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Microsoft Copilot</span>
+            <span class="skill-tag">Claude</span>
+            <span class="skill-tag">Gemini</span>
+            <span class="skill-tag">ChatGPT</span>
+            <span class="skill-tag">NotebookLM</span>
+            <span class="skill-tag">Poe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <div class="section-label"><span>Professional Experience</span></div>
+      <h2 class="section-heading reveal">A track record that speaks.</h2>
+      <div class="timeline" style="margin-top:2.5rem">
+
+        <div class="exp-item reveal">
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-role">Executive Personal Secretary <span style="font-size:0.85rem;color:var(--text-muted);font-family:'Outfit',sans-serif;">(Intern)</span></div>
+            <div class="exp-org">National Environmental Standards &amp; Regulatory Enforcement Agency (NESREA)</div>
+            <div class="exp-meta">Abuja, Nigeria &nbsp;·&nbsp; January 2026 – Present &nbsp;·&nbsp; 10 hrs/week</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Providing close personal administrative and secretarial support to a Deputy Director, ensuring seamless, uninterrupted operations within a high-level executive office.</li>
+            <li>Drafting official reports and regulatory documents in strict accordance with agency protocols and confidentiality standards.</li>
+            <li>Partnered with key stakeholders to design and implement an annual departmental <strong>SMART operational work plan</strong>, improving accountability and goal alignment.</li>
+            <li>Serving as the central liaison between the executive office, internal departments, and external stakeholders to ensure effective communication, project execution, and cross-functional alignment.</li>
+            <li>Coordinating meetings and engagements, including minute-taking and outcome tracking, to ensure all commitments are clearly documented and followed through.</li>
+            <li>Maintaining structured digital filing and archiving systems to support compliance, audits, and timely information retrieval.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-role">General Administrative Assistant <span style="font-size:0.85rem;color:var(--text-muted);font-family:'Outfit',sans-serif;">(Intern)</span></div>
+            <div class="exp-org">National Environmental Standards &amp; Regulatory Enforcement Agency (NESREA)</div>
+            <div class="exp-meta">Abuja, Nigeria &nbsp;·&nbsp; June 2025 – January 2026</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Played a key role in the research, documentation, and preparation of a federal project proposal, contributing directly to securing <strong>government funding approval</strong> ahead of critical deadlines.</li>
+            <li>Provided comprehensive administrative and operational support to senior executives, including document preparation, professional correspondence drafting, data entry, and action item tracking.</li>
+            <li>Maintained and updated digital records for more than <strong>30 active regulatory and enforcement cases</strong>, ensuring accuracy, accessibility, and compliance at all times.</li>
+            <li>Compiled audit reports, briefing documents, and internal documentation to facilitate clear, structured communication of environmental program progress among stakeholders.</li>
+            <li>Collaborated with technical and compliance teams during field operations, documenting environmental and geographical data and preparing comprehensive official summary reports.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-dot"></div>
+          <div class="exp-header">
+            <div class="exp-role">Executive Personal Secretary <span style="font-size:0.85rem;color:var(--text-muted);font-family:'Outfit',sans-serif;">(Contract)</span></div>
+            <div class="exp-org">Supreme Court of Nigeria (SCN)</div>
+            <div class="exp-meta">Abuja, Nigeria &nbsp;·&nbsp; March 2019 – April 2024</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>Collaborated with the executive team to design and oversee annual welfare budgets, leveraging market research to achieve optimal cost allocation and expenditure efficiency.</li>
+            <li>Streamlined information flow to the executive office by providing timely, accurate, and actionable insights on internal and external developments.</li>
+            <li>Served as the primary point of contact for the executive office, coordinating high-level appointments and managing sensitive correspondence with <strong>absolute discretion and professionalism</strong>.</li>
+            <li>Optimized executive workflow by managing complex schedules and prioritizing time-sensitive correspondence, resulting in a <strong class="metric">50% increase in overall office productivity</strong>.</li>
+            <li>Designed and maintained structured filing and archiving systems that <strong class="metric">reduced document retrieval time by over 80%</strong>, significantly improving operational efficiency.</li>
+            <li>Managed executive office inventory, vendor relationships, and procurement records, <strong class="metric">improving supply tracking accuracy by over 30%</strong>.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-inner">
+      <div class="section-label"><span>Education</span></div>
+      <h2 class="section-heading reveal">Academic foundation.</h2>
+      <div class="edu-card reveal" style="margin-top:2rem">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <div class="edu-degree">Bachelor of Science — Geography &amp; Environmental Management</div>
+          <div class="edu-inst">University of Abuja, Abuja, Nigeria</div>
+          <div class="edu-detail">October 2019 – December 2023</div>
+          <div class="edu-courses"><strong style="color:var(--text-muted);font-weight:500">Relevant Coursework:</strong> Data Analysis &nbsp;·&nbsp; Research Methods &nbsp;·&nbsp; Statistical Methods &nbsp;·&nbsp; Computer Science</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS & MEMBERSHIPS -->
+  <section id="certifications">
+    <div class="section-inner">
+      <div class="section-label"><span>Professional Development</span></div>
+      <h2 class="section-heading reveal">Certifications &amp; memberships.</h2>
+      <div class="cert-grid reveal" style="margin-top:2rem">
+        <div class="cert-card">
+          <div class="cert-type">Certification</div>
+          <div class="cert-name">Professional Certificate in Project Management in International Development</div>
+          <div class="cert-org">Dataville Research LLC &nbsp;·&nbsp; Issued August 2025</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-type">Certification</div>
+          <div class="cert-name">Soft Skills Training in Communication and Emotional Intelligence</div>
+          <div class="cert-org">Jobberman Nigeria &nbsp;·&nbsp; Issued January 2025</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-type">Professional Membership</div>
+          <div class="cert-name">American Society of Administrative Professionals (ASAP)</div>
+          <div class="cert-org">Professional Member &nbsp;·&nbsp; Since January 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY I AM A GREAT FIT -->
+  <section id="whyme">
+    <div class="section-inner">
+      <div class="section-label"><span>Why I Am a Great Fit</span></div>
+      <div class="whyme-content reveal">
+        <div>
+          <div class="whyme-intro">
+            The kind of support that <em>actually</em> moves the needle — not just task completion, but genuine operational partnership.
+          </div>
+        </div>
+        <ul class="whyme-points">
+          <li><div><strong>Proven in high-stakes environments.</strong> Six years supporting executives and teams in structured, high-pressure settings demands precision, confidentiality, and composure under pressure — strengths I bring to every engagement without exception.</div></li>
+          <li><div><strong>Measurable results, not just effort.</strong> I do not simply show up; I improve systems. A <span class="metric">50% productivity increase</span> and an <span class="metric">80% reduction in document retrieval time</span> in my previous role are real outcomes driven by deliberate process design and consistent execution.</div></li>
+          <li><div><strong>Remote-ready from day one.</strong> A dedicated workspace, reliable internet connection, and full proficiency across leading remote collaboration and AI productivity tools ensure zero ramp-up time for distributed teams operating across any time zone.</div></li>
+          <li><div><strong>Proactive, not reactive.</strong> I anticipate needs, identify issues before they escalate, and deliver consistent follow-through without being prompted. Leaders and teams can delegate with full confidence that tasks will be completed accurately and on time.</div></li>
+          <li><div><strong>Discretion as a professional standard.</strong> Sensitive documents, confidential communications, and executive-level information are managed with the highest level of care and integrity — every time, without compromise.</div></li>
+          <li><div><strong>Available immediately and flexibly.</strong> Ready to begin at short notice, with the capacity to accommodate extended hours and adapt to the scheduling needs of global leaders and teams across multiple time zones.</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL INFO -->
+  <section id="additional">
+    <div class="section-inner">
+      <div class="section-label"><span>Additional Information</span></div>
+      <h2 class="section-heading reveal">A few things worth knowing.</h2>
+      <div class="info-grid reveal" style="margin-top:2rem">
+        <div class="info-item">
+          <div class="info-label">Languages</div>
+          <div class="info-value">English — <strong>Native / Bilingual Proficiency</strong></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Typing Speed</div>
+          <div class="info-value"><strong>53 WPM</strong> &nbsp;·&nbsp; <strong>97.6% Accuracy</strong></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Working Style</div>
+          <div class="info-value">Highly self-managed, detail-oriented, and deadline-driven with strong independent judgment.</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Remote Work Setup</div>
+          <div class="info-value">Reliable home internet &nbsp;·&nbsp; Dedicated workspace &nbsp;·&nbsp; Intel Core i5, 16 GB RAM, 512 GB SSD</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Availability</div>
+          <div class="info-value">Immediate start &nbsp;·&nbsp; Flexible with extended hours and multiple time zones</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Location &amp; Time Zone</div>
+          <div class="info-value">Abuja, Nigeria (WAT) &nbsp;·&nbsp; Open to global remote positions</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Payment Method</div>
+          <div class="info-value">USD bank account with routing number, accessible via the <strong>Cleva App</strong> for a seamless and straightforward global payment process.</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">References</div>
+          <div class="info-value">Available upon request</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="section-label"><span>Contact</span></div>
+      <div class="contact-wrapper reveal">
+        <div>
+          <div class="contact-intro">
+            Let's work together.<br><em>Reach out anytime.</em>
+          </div>
+          <p class="contact-note">
+            I am currently available for new remote opportunities worldwide. Whether you have a <strong>full-time role</strong>, a <strong>part-time role</strong>, a contract engagement, or simply wish to explore possibilities, I would love to hear from you through an appointment via any of the communication channels below.<br><br>
+            I am available <strong>Mondays to Fridays, 09:00 AM – 05:00 PM (WAT)</strong>, and on <strong>weekends, 08:00 AM – 06:00 PM (WAT)</strong> for an appointment.
+          </p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:keneibaku@gmail.com" class="contact-link">
+            <span class="contact-link-icon">✉</span>
+            <div>
+              <span class="contact-link-label">Email</span>
+              keneibaku@gmail.com
+            </div>
+          </a>
+          <a href="tel:+2349136830644" class="contact-link">
+            <span class="contact-link-icon">☎</span>
+            <div>
+              <span class="contact-link-label">Phone / WhatsApp</span>
+              +234-913-683-0644
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/ekene-p-ibaku" target="_blank" class="contact-link">
+            <span class="contact-link-icon">in</span>
+            <div>
+              <span class="contact-link-label">LinkedIn</span>
+              linkedin.com/in/ekene-p-ibaku
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <span>EKENE IBAKU</span>. All rights reserved.</p>
+    <p>Abuja, Nigeria (WAT) &nbsp;·&nbsp; <span>Open to Global Remote Roles</span></p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal, .exp-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id'); });
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
+      });
+    });
+  </script>
+
+</body>
+</html>
